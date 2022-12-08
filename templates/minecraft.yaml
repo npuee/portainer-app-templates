@@ -1,0 +1,44 @@
+version: '3.8'
+#Main service
+
+services:
+  mc:
+    image: itzg/minecraft-server
+    container_name: npu_minecraft
+    ports:
+      - 25565:25565
+    restart: unless-stopped
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+#Minecraft server environment
+    environment:
+      EULA: "true"
+      ENABLE_RCON: "false"
+      TYPE: SPIGOT
+      VIEW_DISTANCE: 16
+      MEMORY: 1G
+      CONSOLE: "false"
+      VERSION: 1.19
+      VANILLATWEAKS_SHARECODE: QArBAw
+      REMOVE_OLD_VANILLATWEAKS: "TRUE"
+      MAX_PLAYERS: 5
+      ICON: "https://i.imgur.com/R8tsD0d.png"
+      MOTD: "Npu home server"
+      SERVER_NAME: NPU_Server
+      TZ: Europe/Tallinn
+      EXEC_DIRECTLY: "true"
+#Add legal as OP
+      OPS: 09b45b6b-d45b-40c8-9d50-d423ad3464b1
+#Whitelist me and my friends:
+      WHITELIST: 09b45b6b-d45b-40c8-9d50-d423ad3464b1,d17a53fe-b73b-4a5e-83fa-159ecaa5e9ed,1625a568-008c-4708-8d95-f0355e208437
+    
+#Persistent world and plugin aka volumes:   Folder is mapped in os   
+    volumes:
+      - "data:/data/"
+volumes:
+  data:
+    driver_opts:
+      type: nfs 
+      o: addr=10.250.4.4,rw,nolock
+      device: :/npu_cloud/minecraft

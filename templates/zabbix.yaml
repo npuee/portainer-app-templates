@@ -1,0 +1,104 @@
+version: "3"
+services:
+#Postgres:
+  zabbix-postgres:
+    container_name: zabbix-postgres
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix_pwd
+      PGDATA: /data/postgres
+      POSTGRES_UID: 1002
+      POSTGRES_GID: 27
+    networks:
+      - zabbix-network
+    volumes:
+      - zabbix-postgres:/data/postgres
+
+#SMNP Traps
+  zabbix-snmptraps:
+    container_name: zabbix-snmptraps
+    image: zabbix/zabbix-snmptraps
+    restart: always
+    depends_on:
+      - zabbix-server
+      - zabbix-postgres
+    networks:
+      - zabbix-network
+    ports:
+      - 162:1162
+    volumes:
+      - zabbix-snmptraps:/var/lib/zabbix/snmptraps:rw
+      - zabbix-mibs:/usr/share/snmp/mibs:ro
+      - zabbix-postgres:/data/postgres
+    environment:
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix_pwd
+      - POSTGRES_DB=zabbix
+
+    
+#Zabbix server
+  zabbix-server:
+    container_name: zabbix-server
+    image: zabbix/zabbix-server-pgsql
+    restart: always
+    depends_on:
+      - zabbix-postgres
+    networks:
+      - zabbix-network
+    ports:
+      - 10051:10051
+    volumes:
+      - zabbix-snmptraps:/var/lib/zabbix/snmptraps:rw
+      - zabbix-mibs:/usr/share/snmp/mibs:ro
+    environment:
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix_pwd
+      - POSTGRES_DB=zabbix 
+      - ZBX_ENABLE_SNMP_TRAPS=true
+
+#Zabbix Frontend
+  zabbix-frontend:
+    container_name: zabbix-frontend
+    image: zabbix/zabbix-web-nginx-pgsql
+    restart: always
+    depends_on:
+      - zabbix-postgres
+      - zabbix-server
+    networks:
+      - zabbix-network
+    ports:
+      - 8087:8080
+    environment:
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_USER=zabbix
+      - POSTGRES_PASSWORD=zabbix_pwd
+      - POSTGRES_DB=zabbix 
+      - ZBX_SERVER_HOST=zabbix-server
+      
+volumes:
+  zabbix-snmptraps:
+    driver_opts:
+      type: nfs 
+      o: addr=10.250.4.4,rw,nolock
+      device: :/npu_cloud/zabbix/snmptraps
+  zabbix-postgres:
+    driver_opts:
+      type: nfs 
+      o: addr=10.250.4.4,rw,nolock
+      device: :/npu_cloud/zabbix/postgres
+  zabbix-mibs:
+    driver_opts:
+      type: nfs 
+      o: addr=10.250.4.4,rw,nolock
+      device: :/npu_cloud/zabbix/mibs
+      
+      
+networks:
+  zabbix-network:
+      name: zabbix-network
+      driver: bridge      
