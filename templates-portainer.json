@@ -1,0 +1,307 @@
+{
+   "version":"2",
+   "templates":[
+      {
+         "type":3,
+         "title":"Nginx Proxy Manager",
+         "name":"nginx_proxy_manager",
+         "description":"Main npu proxy manager",
+         "note":"Persisitent folders should exist in the infa.",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://nginxproxymanager.com/icon.png",
+         "repository":{
+            "stackfile":"templates/nginx_proxy_manager.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Guacamole Remote Server",
+         "name":"guacamole",
+         "description":"Guacamole Remote server with preconfigured microsoft sql server",
+         "note":"Sql server data should exist and so does the sql user, depends on guacamole home folder.",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/guacamole.png",
+         "repository":{
+            "stackfile":"templates/guacamole.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"mssql_password",
+               "label":"Password for existing ms sql server"
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Homer Dashboard",
+         "name":"homer",
+         "description":"NPU users startup dashboard",
+         "note":"Persisitent folders should exist in the infa.",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png",
+         "repository":{
+            "stackfile":"templates/homer.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Cloudflare Argo tunnel",
+         "name":"cloudflared",
+         "description":"Proxying incoming connections",
+         "note":"Cloudflare should be allready be setuped.",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png",
+         "repository":{
+            "stackfile":"templates/cloudflared.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"token",
+               "label":"Copy only token from cloudflare tunnel setup page."
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Minecraft Server",
+         "name":"minecraft",
+         "description":"Minecraft Server by default 1.19",
+         "note":"Persisitent folders should exist in the infa.",
+         "categories":[
+            "Game Servers"
+         ],
+         "platform":"linux",
+         "logo":"https://i.imgur.com/Hy4wNwm.jpg",
+         "repository":{
+            "stackfile":"templates/minecraft.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Microsoft SQL Server",
+         "name":"mssql",
+         "logo":"https://user-images.githubusercontent.com/4249331/52232852-e2c4f780-28bd-11e9-835d-1e3cf3e43888.png",
+         "description":"Microsoft SQL Server",
+         "note":"Persisitent folders should exist in the infa.",
+         "categories":[
+            "microsoft",
+            "sql"
+         ],
+         "platform":"linux",
+         "repository":{
+            "stackfile":"templates/mssql.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"mssql_password",
+               "label":"Password for existing ms sql server"
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Satisfactory Server",
+         "name":"satisfactory",
+         "description":"Satisfactory Server",
+         "note":"Persisitent folders should exist in the infa. If not then it will be created.",
+         "categories":[
+            "Game Servers"
+         ],
+         "platform":"linux",
+         "logo":"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6dde86d0-2f9d-4205-9c2a-0b11be03d8c9/ddzf687-3997c582-843a-4e29-8e10-1b7e20e70224.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzZkZGU4NmQwLTJmOWQtNDIwNS05YzJhLTBiMTFiZTAzZDhjOVwvZGR6ZjY4Ny0zOTk3YzU4Mi04NDNhLTRlMjktOGUxMC0xYjdlMjBlNzAyMjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.T4QPr9G4zTxxYahCsfWRrbSnCpIPI2-foH8sOfqthDI",
+         "repository":{
+            "stackfile":"templates/satisfactory.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"MySQL Community Server",
+         "name":"mysql",
+         "logo":"https://raw.githubusercontent.com/docker-library/docs/c408469abbac35ad1e4a50a6618836420eb9502e/mysql/logo.png",
+         "description":"Community MySQL Server",
+         "note":"Persisitent folders should exist in the infa.",
+         "categories":[
+            "sql"
+         ],
+         "platform":"linux",
+         "repository":{
+            "stackfile":"templates/mysql.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"MYSQL_ROOT_PASSWORD",
+               "label":"Password for root user"
+            },
+            {
+               "name":"MYSQL_DATABASE",
+               "label":"Database to serve by mysql"
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Signal messaging bot",
+         "name":"signal",
+         "description":"Signal messaging bot",
+         "note":"Persisitent folders should exist in the infa. If not then it will be created.",
+         "categories":[
+            "Core Services",
+            "bot"
+         ],
+         "platform":"linux",
+         "logo":"https://upload.wikimedia.org/wikipedia/commons/8/8d/Signal-Logo.svg",
+         "repository":{
+            "stackfile":"templates/signal-bot.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Quake2 Server",
+         "name":"quake2",
+         "description":"Quake2 Server",
+         "note":"Persisitent folders should exist in the infa. If not then it will be created.",
+         "categories":[
+            "Game Servers"
+         ],
+         "platform":"linux",
+         "logo":"https://raw.githubusercontent.com/InAnimaTe/docker-quake2/master/Quake2_logo.png",
+         "repository":{
+            "stackfile":"templates/quake2.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Nextcloud",
+         "name":"nextcloud",
+         "description":"Nextcloud Server",
+         "note":"If redeploying then run on frontend as www-data: php occ maintenance:update:htaccess , php occ files:scan --all . Then run as root on elastic: /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment , reboot and tun on frontend: php occ fulltextsearch:index  to reindex files",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://upload.wikimedia.org/wikipedia/commons/6/60/Nextcloud_Logo.svg",
+         "repository":{
+            "stackfile":"templates/nextcloud.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"POSTGRES_PASSWORD",
+               "label":"Password for postgres."
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Zabbix Monitoring",
+         "name":"zabbix",
+         "description":"Zabbix Server",
+         "note":"Check persisstant storage!",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png",
+         "repository":{
+            "stackfile":"templates/zabbix.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Plex media server",
+         "name":"plex",
+         "description":"Plex media Server",
+         "note":"Check media and DB persistant storage",
+         "categories":[
+            "Media Services"
+         ],
+         "platform":"linux",
+         "logo":"https://upload.wikimedia.org/wikipedia/commons/7/7b/Plex_logo_2022.svg",
+         "repository":{
+            "stackfile":"templates/plex.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         },
+         "env":[
+            {
+               "name":"CLAIM",
+               "label":"Server claim token: https://www.plex.tv/claim/"
+            },
+            {
+               "name":"HOSTNAME",
+               "label":"Server hostname"
+            }
+         ]
+      },
+      {
+         "type":3,
+         "title":"Searxng search engine",
+         "name":"searxng",
+         "description":"Searxng Server",
+         "note":"Ready to run",
+         "categories":[
+            "Services"
+         ],
+         "platform":"linux",
+         "logo":"https://raw.githubusercontent.com/searxng/searxng/master/src/brand/searxng.svg",
+         "repository":{
+            "stackfile":"templates/searxng.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Gitlab",
+         "name":"gitlab",
+         "description":"Main gitlab server",
+         "note":"Ready to run",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://about.gitlab.com/images/press/logo/png/gitlab-logo-100.png",
+         "repository":{
+            "stackfile":"templates/gitlab.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      },
+      {
+         "type":3,
+         "title":"Image Regitry",
+         "name":"registry",
+         "description":"Main docker image registry",
+         "note":"Ready to run",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lo4km17cfvqa1f0h8prw.png",
+         "repository":{
+            "stackfile":"templates/image_regitry.yaml",
+            "url":"https://git.techhub.ee/npulman/docker-compose-services/"
+         }
+      }      
+   ]
+}
