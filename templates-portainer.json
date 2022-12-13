@@ -192,7 +192,7 @@
          }
       },
       {
-         "type":2,
+         "type":3,
          "title":"Nextcloud",
          "name":"nextcloud",
          "description":"Nextcloud Server",
