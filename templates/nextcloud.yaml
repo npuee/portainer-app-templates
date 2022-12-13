@@ -103,3 +103,8 @@ networks:
   # services that need to be publicly available via this Traefik
   traefik-public:
     external: true
+  network:
+    driver: overlay
+    attachable: true
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
