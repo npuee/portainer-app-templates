@@ -3,13 +3,14 @@ services:
 
   nextcloud-frontend:
     image: nextcloud:apache
+    container_name: nextcloud-frontend
+    restart: always
     depends_on:
       - nextcloud-redis
       - nextcloud-elastic
       - nextcloud-postgres
-    networks:
-      - traefik-public
-      - net
+    ports:
+      - 8085:80
     environment:
       POSTGRES_DB: nextcloud
       POSTGRES_USER: nextcloud_db
@@ -21,49 +22,25 @@ services:
       - /nextcloud/config:/var/www/html/config
       - /nextcloud/data:/var/www/html/data
       - /nextcloud/theme:/var/www/html/themes/
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == kodu.docker]
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.portainer.rule=Host(`cloud.npu.ee`)
-      - traefik.http.routers.portainer.entrypoints=websecure
-      - traefik.http.routers.portainer.tls=true
-      - traefik.http.routers.portainer.tls.certresolver=cloud
-      - traefik.http.services.portainer.loadbalancer.server.port=80  
+
       
   nextcloud-redis:
     image: redis:alpine
-    networks:
-      - traefik-public
-      - net
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == kodu.docker]
-        
+    container_name: nextcloud-redis
+    restart: always
+    
   nextcloud-elastic:
     image: elasticsearch:7.17.7
-    networks:
-      - traefik-public
-      - net
+    container_name: nextcloud-elastic
+    restart: always
     environment:
       discovery.type : single-node
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == kodu.docker]
-        
+      
   nextcloud-cron:
     image: nextcloud:apache
+    container_name: nextcloud-cron
+    restart: always
     entrypoint: /cron.sh
-    networks:
-      - traefik-public
-      - net
     depends_on:
       - nextcloud-frontend
       - nextcloud-redis
@@ -74,17 +51,11 @@ services:
       - /nextcloud/config:/var/www/html/config
       - /nextcloud/data:/var/www/html/data
       - /nextcloud/theme:/var/www/html/themes/
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == kodu.docker]
-        
+   
   nextcloud-postgres:
+    container_name: nextcloud-postgres
     image: postgres:14
-    networks:
-      - traefik-public
-      - net
+    restart: always
     environment:
       POSTGRES_DB: nextcloud
       POSTGRES_USER: nextcloud_db
@@ -92,16 +63,3 @@ services:
       PGDATA: /data/postgres
     volumes:
        - /nextcloud/postgres:/data/postgres
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints: [node.role == kodu.docker]      
-networks:
-  net:
-    driver: overlay
-    driver_opts:
-      com.docker.network.driver.mtu: 1450
-  # services that need to be publicly available via this Traefik
-  traefik-public:
-    external: true
