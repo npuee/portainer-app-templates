@@ -97,14 +97,12 @@ services:
       replicas: 1
       placement:
         constraints: [node.role == kodu.docker]      
-        
 networks:
-  # Use the previously created public network "traefik-public", shared with other
-  # services that need to be publicly available via this Traefik
-  traefik-public:
-    external: true
   net:
     driver: overlay
     attachable: true
     driver_opts:
       com.docker.network.driver.mtu: 1450
+  # services that need to be publicly available via this Traefik
+  traefik-public:
+    external: true
