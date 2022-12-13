@@ -9,7 +9,7 @@ services:
       - nextcloud-postgres
     networks:
       - traefik-public
-      - network
+      - net
     environment:
       POSTGRES_DB: nextcloud
       POSTGRES_USER: nextcloud_db
@@ -38,7 +38,7 @@ services:
     image: redis:alpine
     networks:
       - traefik-public
-      - network
+      - net
     deploy:
       mode: replicated
       replicas: 1
@@ -49,7 +49,7 @@ services:
     image: elasticsearch:7.17.7
     networks:
       - traefik-public
-      - network
+      - net
     environment:
       discovery.type : single-node
     deploy:
@@ -63,7 +63,7 @@ services:
     entrypoint: /cron.sh
     networks:
       - traefik-public
-      - network
+      - net
     depends_on:
       - nextcloud-frontend
       - nextcloud-redis
@@ -84,7 +84,7 @@ services:
     image: postgres:14
     networks:
       - traefik-public
-      - network
+      - net
     environment:
       POSTGRES_DB: nextcloud
       POSTGRES_USER: nextcloud_db
@@ -103,7 +103,7 @@ networks:
   # services that need to be publicly available via this Traefik
   traefik-public:
     external: true
-  network:
+  net:
     driver: overlay
     attachable: true
     driver_opts:
