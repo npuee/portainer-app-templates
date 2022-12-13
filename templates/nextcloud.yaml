@@ -100,7 +100,6 @@ services:
 networks:
   net:
     driver: overlay
-    attachable: true
     driver_opts:
       com.docker.network.driver.mtu: 1450
   # services that need to be publicly available via this Traefik
