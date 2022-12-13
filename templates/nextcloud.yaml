@@ -78,7 +78,7 @@ services:
       - /nextcloud/config:/var/www/html/config
       - /nextcloud/data:/var/www/html/data
       - /nextcloud/theme:/var/www/html/themes/
-       deploy:
+    deploy:
       mode: replicated
       replicas: 1
       placement:
