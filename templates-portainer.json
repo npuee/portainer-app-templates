@@ -192,11 +192,10 @@
          }
       },
       {
-         "type":3,
+         "type":2,
          "title":"Nextcloud",
          "name":"nextcloud",
          "description":"Nextcloud Server",
-         "type":"swarm",
          "note":"If redeploying then run on frontend as www-data: php occ maintenance:update:htaccess , php occ files:scan --all . Then run as root on elastic: /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment , reboot and tun on frontend: php occ fulltextsearch:index  to reindex files",
          "categories":[
             "Core Services"
