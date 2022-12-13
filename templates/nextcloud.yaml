@@ -3,8 +3,6 @@ services:
 
   nextcloud-frontend:
     image: nextcloud:apache
-    container_name: nextcloud-frontend
-    restart: always
     depends_on:
       - nextcloud-redis
       - nextcloud-elastic
@@ -38,8 +36,6 @@ services:
       
   nextcloud-redis:
     image: redis:alpine
-    container_name: nextcloud-redis
-    restart: always
     networks:
       - traefik-public
       - network
@@ -51,8 +47,6 @@ services:
         
   nextcloud-elastic:
     image: elasticsearch:7.17.7
-    container_name: nextcloud-elastic
-    restart: always
     networks:
       - traefik-public
       - network
@@ -66,8 +60,6 @@ services:
         
   nextcloud-cron:
     image: nextcloud:apache
-    container_name: nextcloud-cron
-    restart: always
     entrypoint: /cron.sh
     networks:
       - traefik-public
@@ -89,9 +81,7 @@ services:
         constraints: [node.role == kodu.docker]
         
   nextcloud-postgres:
-    container_name: nextcloud-postgres
     image: postgres:14
-    restart: always
     networks:
       - traefik-public
       - network
