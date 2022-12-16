@@ -13,9 +13,9 @@ services:
             - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
             - REGISTRY_STORAGE_DELETE_ENABLED=true
         volumes:
-          - /registry/data:/var/lib/registry
-          - /registry/certs:/certs
-          - /registry/auth:/auth
+          - /cloud/registry/data:/var/lib/registry
+          - /cloud//registry/certs:/certs
+          - /cloud/registry/auth:/auth
 #Nice little gui
     registry-gui:
         image: 'parabuzzle/craneoperator:latest'
