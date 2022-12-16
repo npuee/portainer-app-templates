@@ -14,7 +14,7 @@ services:
             - REGISTRY_STORAGE_DELETE_ENABLED=true
         volumes:
           - /cloud/registry/data:/var/lib/registry
-          - /cloud//registry/certs:/certs
+          - /cloud/registry/certs:/certs
           - /cloud/registry/auth:/auth
 #Nice little gui
     registry-gui:
