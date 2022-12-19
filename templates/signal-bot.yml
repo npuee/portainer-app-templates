@@ -4,22 +4,39 @@ services:
     image: bbernhard/signal-cli-rest-api:latest
     container_name: signal-backend
     restart: unless-stopped
+    networks:
+      - signal-network
     environment:
       - MODE=normal
       - TZ="Europe/Tallinn"
     volumes:
-      - /signal/backend:/home/.local/share/signal-cli
-      
+      - /cloud/signal/backend:/home/.local/share/signal-cli
+     
   signal-frontend:
     image: trafex/php-nginx:latest
     container_name: signal-frontend
     restart: unless-stopped
+    networks:
+      - signal-network
+      - traefik-public
     environment:
-
       - TZ="Europe/Tallinn"    
-    ports:
-      - '8089:8080'
+#    ports:
+      #- '8089:8080'
     depends_on:
     - signal-backend
     volumes:
-      - /signal/frontend:/var/www/html
+      - /cloud/signal/frontend:/var/www/html
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.signal.rule=Host(`$hostname`)
+      - traefik.http.routers.signal.entrypoints=websecure
+      - traefik.http.routers.signal.tls=true
+      - traefik.http.routers.signal.tls.certresolver=cloud
+      
+networks:
+  signal-network:
+      name: signal-network
+      driver: bridge
+  traefik-public:
+    external: true

@@ -173,7 +173,13 @@
          "repository":{
             "stackfile":"templates/signal-bot.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
-         }
+         },
+         "env":[
+            {
+               "name":"HOSTNAME",
+               "label":"Traefik hostname"
+            }
+         ]
       },
       {
          "type":3,
@@ -321,7 +327,7 @@
          "env":[
             {
                "name":"HOSTNAME",
-               "label":"Wiki server hostname"
+               "label":"Traefik hostname"
             }
          ]
       }       
