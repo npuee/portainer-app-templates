@@ -1,0 +1,52 @@
+version: "2"
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack
+    container_name: bookstack-frontend
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=$hostname
+      - DB_HOST=bookstack_db
+      - DB_USER=bookstack
+      - DB_PASS=Change_me
+      - DB_DATABASE=bookstackapp
+    volumes:
+      - /cloud/bookstack/config:/config
+#    ports:
+#      - 6875:80
+    restart: unless-stopped
+    depends_on:
+      - bookstack_db
+    networks:
+      - bookstack-network
+      - traefik-public 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.wiki.rule=Host(`$hostname`)
+      - traefik.http.routers.wiki.entrypoints=websecure
+      - traefik.http.routers.wiki.tls=true
+      - traefik.http.routers.wiki.tls.certresolver=cloud
+  bookstack_db:
+    image: mysql/mysql-server:latest
+    container_name: bookstack_db
+    restart: unless-stopped
+    networks:
+      - bookstack-network
+    environment:
+      MYSQL_DATABASE: bookstackapp
+      MYSQL_ROOT_PASSWORD: Change_me
+      MYSQL_USER: bookstack
+      MYSQL_PASSWORD: Change_me
+      MYSQL_ROOT_HOST: '%'  # needs to be enclosed with quotes
+    volumes:
+      - /cloud/bookstack/database:/var/lib/mysql
+    command:
+       --default-authentication-plugin=mysql_native_password
+
+networks:
+  traefik-public:
+    external: true
+  bookstack-network:
+      name: bookstack-network
+      driver: bridge
