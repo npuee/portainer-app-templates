@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  searxng:
+    image: searxng/searxng
+    container_name: searxng
+    restart: always
+    ports:
+      - '5147:8080'
+    volumes:
+      - '/searxng:/etc/searxng'
+

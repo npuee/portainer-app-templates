@@ -13,7 +13,7 @@
          "platform":"linux",
          "logo":"https://nginxproxymanager.com/icon.png",
          "repository":{
-            "stackfile":"templates/nginx_proxy_manager.yaml",
+            "stackfile":"templates/nginx_proxy_manager.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -29,7 +29,7 @@
          "platform":"linux",
          "logo":"https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/guacamole.png",
          "repository":{
-            "stackfile":"templates/guacamole.yaml",
+            "stackfile":"templates/guacamole.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -51,7 +51,7 @@
          "platform":"linux",
          "logo":"https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png",
          "repository":{
-            "stackfile":"templates/homer.yaml",
+            "stackfile":"templates/homer.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -67,7 +67,7 @@
          "platform":"linux",
          "logo":"https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png",
          "repository":{
-            "stackfile":"templates/cloudflared.yaml",
+            "stackfile":"templates/cloudflared.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -89,7 +89,7 @@
          "platform":"linux",
          "logo":"https://i.imgur.com/Hy4wNwm.jpg",
          "repository":{
-            "stackfile":"templates/minecraft.yaml",
+            "stackfile":"templates/minecraft.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -106,7 +106,7 @@
          ],
          "platform":"linux",
          "repository":{
-            "stackfile":"templates/mssql.yaml",
+            "stackfile":"templates/mssql.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -128,7 +128,7 @@
          "platform":"linux",
          "logo":"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6dde86d0-2f9d-4205-9c2a-0b11be03d8c9/ddzf687-3997c582-843a-4e29-8e10-1b7e20e70224.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzZkZGU4NmQwLTJmOWQtNDIwNS05YzJhLTBiMTFiZTAzZDhjOVwvZGR6ZjY4Ny0zOTk3YzU4Mi04NDNhLTRlMjktOGUxMC0xYjdlMjBlNzAyMjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.T4QPr9G4zTxxYahCsfWRrbSnCpIPI2-foH8sOfqthDI",
          "repository":{
-            "stackfile":"templates/satisfactory.yaml",
+            "stackfile":"templates/satisfactory.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -144,7 +144,7 @@
          ],
          "platform":"linux",
          "repository":{
-            "stackfile":"templates/mysql.yaml",
+            "stackfile":"templates/mysql.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -171,7 +171,7 @@
          "platform":"linux",
          "logo":"https://upload.wikimedia.org/wikipedia/commons/8/8d/Signal-Logo.svg",
          "repository":{
-            "stackfile":"templates/signal-bot.yaml",
+            "stackfile":"templates/signal-bot.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -187,7 +187,7 @@
          "platform":"linux",
          "logo":"https://raw.githubusercontent.com/InAnimaTe/docker-quake2/master/Quake2_logo.png",
          "repository":{
-            "stackfile":"templates/quake2.yaml",
+            "stackfile":"templates/quake2.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -203,7 +203,7 @@
          "platform":"linux",
          "logo":"https://upload.wikimedia.org/wikipedia/commons/6/60/Nextcloud_Logo.svg",
          "repository":{
-            "stackfile":"templates/nextcloud.yaml",
+            "stackfile":"templates/nextcloud.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -225,7 +225,7 @@
          "platform":"linux",
          "logo":"https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png",
          "repository":{
-            "stackfile":"templates/zabbix.yaml",
+            "stackfile":"templates/zabbix.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -241,7 +241,7 @@
          "platform":"linux",
          "logo":"https://upload.wikimedia.org/wikipedia/commons/7/7b/Plex_logo_2022.svg",
          "repository":{
-            "stackfile":"templates/plex.yaml",
+            "stackfile":"templates/plex.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          },
          "env":[
@@ -267,7 +267,7 @@
          "platform":"linux",
          "logo":"https://raw.githubusercontent.com/searxng/searxng/master/src/brand/searxng.svg",
          "repository":{
-            "stackfile":"templates/searxng.yaml",
+            "stackfile":"templates/searxng.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -283,7 +283,7 @@
          "platform":"linux",
          "logo":"https://about.gitlab.com/images/press/logo/png/gitlab-logo-100.png",
          "repository":{
-            "stackfile":"templates/gitlab.yaml",
+            "stackfile":"templates/gitlab.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
       },
@@ -299,9 +299,31 @@
          "platform":"linux",
          "logo":"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lo4km17cfvqa1f0h8prw.png",
          "repository":{
-            "stackfile":"templates/image_regitry.yaml",
+            "stackfile":"templates/image_regitry.yml",
             "url":"https://github.com/npuee/portainer-app-templates/"
          }
-      }      
+      },
+      {
+         "type":3,
+         "title":"Bookstack wiki",
+         "name":"bookstack",
+         "description":"Bookstack wiki",
+         "note":"Ready to run",
+         "categories":[
+            "Core Services"
+         ],
+         "platform":"linux",
+         "logo":"https://upload.wikimedia.org/wikipedia/commons/d/d2/BookStack_logo.svg",
+         "repository":{
+            "stackfile":"templates/bookstack.yml",
+            "url":"https://github.com/npuee/portainer-app-templates/"
+         },
+         "env":[
+            {
+               "name":"HOSTNAME",
+               "label":"Wiki server hostname"
+            }
+         ]
+      }       
    ]
 }

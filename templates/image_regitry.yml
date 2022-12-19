@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+#Registry itself
+    registry:
+        image: 'registry:2'
+        container_name: registry-backend
+        restart: always
+        ports:
+            - '5000:5000'
+        environment:
+            - REGISTRY_AUTH=htpasswd
+            - 'REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm'
+            - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+            - REGISTRY_STORAGE_DELETE_ENABLED=true
+        volumes:
+          - /cloud/registry/data:/var/lib/registry
+          - /cloud/registry/certs:/certs
+          - /cloud/registry/auth:/auth
+#Nice little gui
+    registry-gui:
+        image: 'parabuzzle/craneoperator:latest'
+        container_name: registry-gui
+        restart: always
+        ports:
+            - '8086:80'
+        environment:
+            - REGISTRY_HOST=hub.techhub.ee
+            - REGISTRY_PORT=443
+            - REGISTRY_PROTOCOL=https
+            - SSL_VERIFY=true
+            - ALLOW_REGISTRY_LOGIN=true
+            - REGISTRY_ALLOW_DELETE=true

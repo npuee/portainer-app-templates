@@ -1,8 +1,0 @@
-version: '3'
-services:
-  mysrv:
-    command:
-    image: inanimate/quake2
-    volumes:
-    - ./pak0.pak:/usr/share/games/quake2/baseq2/pak0.pak
-

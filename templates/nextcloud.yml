@@ -1,0 +1,65 @@
+version: "3"
+services:
+
+  nextcloud-frontend:
+    image: nextcloud:apache
+    container_name: nextcloud-frontend
+    restart: always
+    depends_on:
+      - nextcloud-redis
+      - nextcloud-elastic
+      - nextcloud-postgres
+    ports:
+      - 8085:80
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud_db
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_HOST: nextcloud-postgres
+    volumes:
+      - /nextcloud/html:/var/www/html
+      - /nextcloud/apps:/var/www/html/custom_apps
+      - /nextcloud/config:/var/www/html/config
+      - /nextcloud/data:/var/www/html/data
+      - /nextcloud/theme:/var/www/html/themes/
+
+      
+  nextcloud-redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: always
+    
+  nextcloud-elastic:
+    image: elasticsearch:7.17.7
+    container_name: nextcloud-elastic
+    restart: always
+    environment:
+      discovery.type : single-node
+      
+  nextcloud-cron:
+    image: nextcloud:apache
+    container_name: nextcloud-cron
+    restart: always
+    entrypoint: /cron.sh
+    depends_on:
+      - nextcloud-frontend
+      - nextcloud-redis
+      - nextcloud-postgres
+    volumes:
+      - /nextcloud/html:/var/www/html
+      - /nextcloud/apps:/var/www/html/custom_apps
+      - /nextcloud/config:/var/www/html/config
+      - /nextcloud/data:/var/www/html/data
+      - /nextcloud/theme:/var/www/html/themes/
+   
+  nextcloud-postgres:
+    container_name: nextcloud-postgres
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud_db
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      PGDATA: /data/postgres
+    volumes:
+       - /nextcloud/postgres:/data/postgres

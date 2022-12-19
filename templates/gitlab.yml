@@ -1,0 +1,41 @@
+version: '3.6'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab-frontend
+    restart: always
+    hostname: 'git.techhub.ee'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.techhub.ee'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        gitlab_rails['time_zone'] = 'Europe/Tallinn'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+#      - '8098:80'
+      - '8098:443'
+      - '2222:2222'
+    volumes:
+      - '/gitlab/config:/etc/gitlab'
+      - '/gitlab/logs:/var/log/gitlab'
+      - '/gitlab/data:/var/opt/gitlab'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    shm_size: '1024m'
+    networks:
+      - git-network   
+
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: 'gitlab/gitlab-runner:latest'
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/gitlab/gitlab-runner-config:/etc/gitlab-runner'
+      - '/gitlab/config/ssl:/etc/gitlab-runner/certs'
+    networks:
+      - git-network  
+
+networks:
+  git-network:
+      name: git-internal
+      driver: bridge
